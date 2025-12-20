@@ -1,23 +1,38 @@
 <script setup>
+import { ref } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+const count = ref(0)
+const addCount = () => {
+  count.value ++
+}
+const list = ref(['#a23131', '#888', '#123122'])
+// 如果要變更數值渲染在畫面上一定要用ref
+const url1 = ref('https://www.google.com')
+let url2 = 'https://www.google.com'
+const updateUrl = () => {
+  url1.value = 'https://font.google.com'
+  url2 = 'https://font.google.com' // 不可以用const定義
+}
 </script>
 
 <template>
-  <header>
+  <p :style="{color: list[count] || 'blue'}">{{ count }}</p>
+  <button @click="addCount">數字加一</button>
+  <button @click="updateUrl">click</button>
+  <a :href="url1">{{ url1 }} </a>
+  <a :href="url2">{{ url2 }} - 不會被更新(不是響應式資料)</a>
+  <!-- <header>
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
+      <HelloWorld msg="我是小龜" />
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
       </nav>
     </div>
   </header>
-
-  <RouterView />
+  <RouterView /> -->
 </template>
 
 <style scoped>
