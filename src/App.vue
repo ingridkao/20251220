@@ -35,27 +35,23 @@ const updateUser = () => {
   {{ user['name'] }}
   <button @click="rename">重新命名</button>
   <button @click="updateUser">換人</button>
-
   <p :style="{ color: list[count] || 'blue' }">{{ count }}</p>
   <button @click="addCount">數字加一</button>
   <button @click="updateUrl">click</button>
   <a :href="url1">{{ url1 }} </a>
   <a :href="url2">{{ url2 }} - 不會被更新(不是響應式資料)</a> -->
-
-  <!-- <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+  <header>
+    <!-- <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" /> -->
     <div class="wrapper">
-      <HelloWorld msg="我是小龜" />
+      <!-- <HelloWorld msg="聖誕節嘿嘿" /> -->
       <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
+        <RouterLink to="/">首頁</RouterLink>
+        <RouterLink to="/about">關於</RouterLink>
+        <RouterLink to="/product">商品</RouterLink>
+        <RouterLink to="/cart">購物車</RouterLink>
       </nav>
     </div>
-  </header> -->
-
-  <RouterLink to="/">Home</RouterLink>
-  <RouterLink to="/about">About</RouterLink>
-  <RouterLink to="/product">Product</RouterLink>
+  </header>
   <main>
     <RouterView />
   </main>
@@ -63,7 +59,7 @@ const updateUser = () => {
 
 <style scoped>
 main {
-  border: 1px solid red;
+  border: 1px solid #000;
 }
 header {
   line-height: 1.5;
