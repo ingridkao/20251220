@@ -1,10 +1,10 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, reactive } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
 const count = ref(0)
 const addCount = () => {
-  count.value ++
+  count.value++
 }
 const list = ref(['#a23131', '#888', '#123122'])
 // 如果要變更數值渲染在畫面上一定要用ref
@@ -14,14 +14,34 @@ const updateUrl = () => {
   url1.value = 'https://font.google.com'
   url2 = 'https://font.google.com' // 不可以用const定義
 }
+const user = reactive({
+  name: 'ingrid',
+  blog: 'tsetstse',
+})
+const rename = () => {
+  user.name = 'kao'
+}
+const updateUser = () => {
+  // user = {
+  //   name: 'asds',
+  //   blog: 'tsetsdqwewatse',
+  // }
+  user.name = 'asds'
+  user.blog = 'tsetsdqwewatse'
+}
 </script>
-
 <template>
-  <p :style="{color: list[count] || 'blue'}">{{ count }}</p>
+  <!-- {{ user.blog }}
+  {{ user['name'] }}
+  <button @click="rename">重新命名</button>
+  <button @click="updateUser">換人</button>
+
+  <p :style="{ color: list[count] || 'blue' }">{{ count }}</p>
   <button @click="addCount">數字加一</button>
   <button @click="updateUrl">click</button>
   <a :href="url1">{{ url1 }} </a>
-  <a :href="url2">{{ url2 }} - 不會被更新(不是響應式資料)</a>
+  <a :href="url2">{{ url2 }} - 不會被更新(不是響應式資料)</a> -->
+
   <!-- <header>
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
     <div class="wrapper">
@@ -31,11 +51,20 @@ const updateUrl = () => {
         <RouterLink to="/about">About</RouterLink>
       </nav>
     </div>
-  </header>
-  <RouterView /> -->
+  </header> -->
+
+  <RouterLink to="/">Home</RouterLink>
+  <RouterLink to="/about">About</RouterLink>
+  <RouterLink to="/product">Product</RouterLink>
+  <main>
+    <RouterView />
+  </main>
 </template>
 
 <style scoped>
+main {
+  border: 1px solid red;
+}
 header {
   line-height: 1.5;
   max-height: 100vh;
