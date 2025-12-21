@@ -58,9 +58,9 @@ const updateUser = () => {
 </template>
 
 <style scoped>
-main {
+/* main {
   border: 1px solid #000;
-}
+} */
 header {
   line-height: 1.5;
   max-height: 100vh;
