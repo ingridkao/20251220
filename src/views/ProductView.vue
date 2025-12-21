@@ -7,12 +7,12 @@ const listCount = computed(() => {
   return productList.value.length
 })
 const noData = computed(() => productList.value.length === 0)
-// debugger
+
 onMounted(() => {
   axios
     .get('https://fakestoreapi.com/products')
     .then((response) => {
-      // handle success -> 把得到的資料丟給productList
+      // handle success -> 把請求後得到的資料丟給productList
       productList.value = response.data
     })
     .catch((error) => {
@@ -30,7 +30,6 @@ onMounted(() => {
   <p>商品總數：{{ listCount }}</p>
   <!-- <span v-for="num in Math.round(4.1)">🌟</span>
   <span v-for="(str, index) in stringList"> {{ index + 1 }}. {{ str }} </span> -->
-
   <div v-if="noData">沒有資料</div>
   <div v-else>
     <article v-for="product in productList">
