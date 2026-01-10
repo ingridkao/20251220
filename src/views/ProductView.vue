@@ -14,7 +14,7 @@ const fetchData = () => {
     .then((response) => {
       // handle success -> 把請求後得到的資料丟給productList
       productList.value = response.data
-      // resultList.value = response.data
+      resultList.value = response.data
     })
     .catch((error) => {
       // handle error
@@ -30,17 +30,17 @@ onMounted(() => {
 const searchStr = ref('')
 const colors = ref('#rrggbb')
 const fontSizeValue = ref(10)
-// const resultList = ref([])
-// const search = () => {
-//   resultList.value = productList.value.filter((item) => {
-//     return item.title.includes(searchStr.value)
-//   })
-// }
-const resultList = computed(() => {
-  return productList.value.filter((item) => {
+const resultList = ref([])
+const search = () => {
+  resultList.value = productList.value.filter((item) => {
     return item.title.includes(searchStr.value)
   })
-})
+}
+// const resultList = computed(() => {
+//   return productList.value.filter((item) => {
+//     return item.title.includes(searchStr.value)
+//   })
+// })
 </script>
 
 <template>
