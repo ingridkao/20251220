@@ -37,6 +37,7 @@ const updateUser = () => {
         <RouterLink to="/about">關於</RouterLink>
         <RouterLink to="/product">商品</RouterLink>
         <RouterLink to="/cart">購物車</RouterLink>
+        <RouterLink to="/qa">q&a</RouterLink>
       </nav>
     </div>
   </header>

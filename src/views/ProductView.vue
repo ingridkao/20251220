@@ -43,12 +43,6 @@ const search = () => {
     return item.title.includes(searchStr.value)
   })
 }
-// 圖片引用方法1 For assets
-import turtleImg1 from '@/assets/img/3.png'
-// .. 表示回到views目錄
-const parseAssetsIcon = (fileName) => {
-  return new URL(`../assets/img/${fileName}`, import.meta.url).href
-}
 
 const btnSize = ref('ingrid')
 const clickBtn1 = (value1, value2) => {
@@ -79,10 +73,8 @@ const clickBtn2 = (value1, value2) => {
           <!-- <BasicButton size="small" title="ingrid" @clickHandler="clickBtn" /> -->
         </template>
       </Card>
-      <!-- <img :src="turtleImg1" /> -->
+
       <!-- <img src="/public/img/1.png" /> -->
-      <!-- <img :src="`${baseURL}public/img/1.png`" /> -->
-      <!-- <img :src="parseAssetsIcon('3.png')" /> -->
     </SwiperSlide>
   </Swiper>
 
