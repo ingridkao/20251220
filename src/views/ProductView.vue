@@ -7,7 +7,6 @@ import 'swiper/css'
 
 import Card from '@/components/ui/Card.vue'
 import BasicButton from '@/components/ui/BasicButton.vue'
-const baseURL = import.meta.env.BASE_URL
 
 const productList = ref([])
 // 快速計算陣列數量結果
@@ -15,6 +14,7 @@ const listCount = computed(() => {
   return productList.value.length
 })
 const noData = computed(() => productList.value.length === 0)
+const baseURL = import.meta.env.BASE_URL
 const fetchData = () => {
   axios
     // .get('https://fakestoreapi.com/products')

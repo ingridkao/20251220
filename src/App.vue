@@ -1,9 +1,6 @@
 <script setup>
 import { ref, reactive } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
-import { useCartStore } from '@/stores/cart'
-const cartStore = useCartStore()
-
 const count = ref(0)
 const addCount = () => {
   count.value++
@@ -36,7 +33,6 @@ const updateUser = () => {
   <header>
     <div class="wrapper">
       <nav>
-        <div>購物車數量{{ cartStore.cartCount }}</div>
         <RouterLink to="/">首頁</RouterLink>
         <RouterLink to="/about">關於</RouterLink>
         <RouterLink to="/product">商品</RouterLink>

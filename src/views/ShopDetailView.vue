@@ -1,6 +1,22 @@
 <script setup>
 import { ref, watch } from 'vue'
 import axios from 'axios'
+
+import { useClipboard } from '@vueuse/core'
+const source = ref('Hello')
+const { copy, isSupported } = useClipboard({ source })
+
+import Swal from 'sweetalert2'
+const alartHandler = () => {
+  Swal.fire({
+    title: 'Error!',
+    text: 'Do you want to continue',
+    icon: 'question',
+    confirmButtonText: 'Cool',
+    theme: 'dark',
+  })
+}
+
 const prop = defineProps(['id'])
 const targetProd = ref(null)
 const fetchData = () => {
@@ -23,6 +39,14 @@ watch(
 )
 </script>
 <template>
+  <div>
+    <button @click="alartHandler">Alart</button>
+    <div v-if="isSupported">
+      <input type="text" v-model="source" />
+      <button @click="copy(source)">複製</button>
+    </div>
+  </div>
+
   <h1>商品詳情{{ prop.id }}</h1>
   <div v-if="targetProd">{{ targetProd }}</div>
   <div v-else>404</div>
