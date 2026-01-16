@@ -1,0 +1,14 @@
+// 最常用：RWD 斷點
+@mixin up($bp) {
+  @media (min-width: $bp) {
+    @content;
+  }
+}
+
+// 常用：flex 排版
+@mixin flex($justify: center, $align: center, $gap: 0) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+  gap: $gap;
+}

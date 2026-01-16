@@ -1,6 +1,14 @@
 <script setup>
+// 1)引用所有會用到的套件等
 import { ref, computed, onMounted } from 'vue'
 import axios from 'axios'
+import { Swiper, SwiperSlide } from 'swiper/vue'
+import 'swiper/css'
+
+import Card from '@/components/ui/Card.vue'
+import BasicButton from '@/components/ui/BasicButton.vue'
+const baseURL = import.meta.env.BASE_URL
+
 const productList = ref([])
 // 快速計算陣列數量結果
 const listCount = computed(() => {
@@ -10,7 +18,7 @@ const noData = computed(() => productList.value.length === 0)
 const fetchData = () => {
   axios
     // .get('https://fakestoreapi.com/products')
-    .get('/data/product.json')
+    .get(`${baseURL}data/product.json`)
     .then((response) => {
       // handle success -> 把請求後得到的資料丟給productList
       productList.value = response.data
@@ -29,22 +37,56 @@ onMounted(() => {
 })
 const searchStr = ref('')
 const colors = ref('#rrggbb')
-const fontSizeValue = ref(10)
 const resultList = ref([])
 const search = () => {
   resultList.value = productList.value.filter((item) => {
     return item.title.includes(searchStr.value)
   })
 }
-// const resultList = computed(() => {
-//   return productList.value.filter((item) => {
-//     return item.title.includes(searchStr.value)
-//   })
-// })
+// 圖片引用方法1 For assets
+import turtleImg1 from '@/assets/img/3.png'
+// .. 表示回到views目錄
+const parseAssetsIcon = (fileName) => {
+  return new URL(`../assets/img/${fileName}`, import.meta.url).href
+}
+
+const btnSize = ref('ingrid')
+const clickBtn1 = (value1, value2) => {
+  btnSize.value = value1
+}
+const clickBtn2 = (value1, value2) => {
+  btnSize.value = value1
+}
 </script>
 
 <template>
   <h1>商品</h1>
+  <BasicButton :size="btnSize" title="small" @clickHandler="clickBtn1" />
+  <BasicButton :size="btnSize" title="large" @clickHandler="clickBtn2" />
+
+  <!-- 圖片引用方法2 Only assets -->
+  <Swiper :slides-per-view="2" :space-between="10">
+    <SwiperSlide v-for="product in resultList" :key="product.id">
+      <Card>
+        <template #title>
+          {{ product.title }}
+        </template>
+        <template #desc>
+          {{ product.category }}
+          <!-- <BasicButton size="small" title="ingrid" /> -->
+        </template>
+        <template #footer>
+          <!-- <BasicButton size="small" title="ingrid" @clickHandler="clickBtn" /> -->
+        </template>
+      </Card>
+      <!-- <img :src="turtleImg1" /> -->
+      <!-- <img src="/public/img/1.png" /> -->
+      <!-- <img :src="`${baseURL}public/img/1.png`" /> -->
+      <!-- <img :src="parseAssetsIcon('3.png')" /> -->
+    </SwiperSlide>
+  </Swiper>
+
+  <br />
   <input type="text" v-model="searchStr" />
   <button @click="search">搜尋</button>
   <p>商品總數：{{ listCount }}</p>
@@ -65,17 +107,17 @@ const search = () => {
     </article>
   </div>
 </template>
-
-<style lang="scss">
+<style scoped lang="scss" src="@/assets/styles/page/product.scss"></style>
+<style lang="scss" scoped>
+// @import '@/assets/styles/page/product.scss';
+h1 {
+  color: green;
+}
 article {
-  border: 1px solid #555;
+  border: 1px solid $color-primary;
 }
 
 img {
   max-height: 5rem;
-}
-
-h1 {
-  color: blue;
 }
 </style>

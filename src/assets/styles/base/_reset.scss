@@ -1,0 +1,73 @@
+/* src/assets/styles/base/_reset.scss */
+
+/* 1) 一致 */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* 2) 基本文字與縮放 */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* 3) body 預設 */
+body {
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* 4) 圖片/影片不要溢出、預設為 block 避免底下空隙 */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* 5) 表單元素：繼承字體，避免各瀏覽器不同 */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* 6) button 游標 */
+button {
+  cursor: pointer;
+}
+
+/* 7) 連結：不硬改顏色（新手專案通常交給設計/元件處理） */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* 8) list 預設（很多 UI 都是自己畫） */
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* 9) 標題/段落的 margin 統一交給你自己排版 */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+/* 10) 避免長字串把版面撐爆（網址、長英文、token） */
+* {
+  overflow-wrap: break-word;
+}

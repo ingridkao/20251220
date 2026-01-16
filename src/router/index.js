@@ -41,6 +41,10 @@ const router = createRouter({
       component: NotFound,
     },
   ],
+  scrollBehavior(to, from, savedPosition) {
+    // 始終滾到最上面
+    return { top: 0 }
+  },
 })
 
 export default router

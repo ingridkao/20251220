@@ -1,7 +1,9 @@
 <script setup>
 import { ref, reactive } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import { useCartStore } from '@/stores/cart'
+const cartStore = useCartStore()
+
 const count = ref(0)
 const addCount = () => {
   count.value++
@@ -31,20 +33,10 @@ const updateUser = () => {
 }
 </script>
 <template>
-  <!-- {{ user.blog }}
-  {{ user['name'] }}
-  <button @click="rename">重新命名</button>
-  <button @click="updateUser">換人</button>
-  <p :style="{ color: list[count] || 'blue' }">{{ count }}</p>
-  <button @click="addCount">數字加一</button>
-  <button @click="updateUrl">click</button>
-  <a :href="url1">{{ url1 }} </a>
-  <a :href="url2">{{ url2 }} - 不會被更新(不是響應式資料)</a> -->
   <header>
-    <!-- <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" /> -->
     <div class="wrapper">
-      <!-- <HelloWorld msg="聖誕節嘿嘿" /> -->
       <nav>
+        <div>購物車數量{{ cartStore.cartCount }}</div>
         <RouterLink to="/">首頁</RouterLink>
         <RouterLink to="/about">關於</RouterLink>
         <RouterLink to="/product">商品</RouterLink>

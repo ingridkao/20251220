@@ -1,0 +1,55 @@
+/* src/assets/styles/base/_typography.scss */
+
+/* 建議：字體用 CSS 變數，之後你要換字體只改一處 */
+:root {
+  --font-sans:
+    'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', system-ui, -apple-system, sans-serif;
+
+  /* 圓潤可愛：優先用 Rounded 字體，沒有就退回 sans */
+  --font-cute: 'M PLUS Rounded 1c', 'Zen Maru Gothic', var(--font-sans);
+
+  --text-color: #111827;
+  --text-muted: #6b7280;
+
+  --base-font-size: 16px;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--base-font-size);
+  line-height: 1.6;
+  color: var(--text-color);
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 標題用可愛圓體 */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-cute);
+  line-height: 1.25;
+  font-weight: 700;
+}
+
+/* 文字基礎 */
+p {
+  line-height: 1.8;
+}
+
+/* 常用的輔助文字 */
+small,
+.text-muted {
+  color: var(--text-muted);
+}
+
+/* code 字體（不想太跳就用系統等寬） */
+code,
+pre {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace;
+  font-size: 0.95em;
+}

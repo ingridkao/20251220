@@ -12,7 +12,17 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+    },
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `
+          @use "@/assets/styles/variables" as *;
+          @use "@/assets/styles/mixins" as *;
+        `,
+      },
     },
   },
   // server: {
