@@ -1,26 +1,26 @@
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, watch } from 'vue'
 import axios from 'axios'
 const prop = defineProps(['id'])
-const productList = ref([])
-const targetProd = computed(() => {
-  if (!productList.value) return {}
-  return productList.value.find((item) => {
-    return item.id == prop.id
-  })
-})
+const targetProd = ref(null)
 const fetchData = () => {
   axios
-    .get('https://fakestoreapi.com/products')
+    .get(`https://fakestoreapi.com/products/${prop.id}`)
     .then((res) => {
-      productList.value = res.data || []
+      targetProd.value = res.data || {}
     })
     .catch((error) => {})
     .finally(() => {})
 }
-onMounted(() => {
-  fetchData()
-})
+watch(
+  () => prop.id,
+  () => {
+    fetchData()
+  },
+  {
+    immediate: true,
+  },
+)
 </script>
 <template>
   <h1>商品詳情{{ prop.id }}</h1>
