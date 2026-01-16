@@ -1,25 +1,15 @@
 <script setup>
-import { ref, computed, onMounted } from 'vue'
-import axios from 'axios'
+import { computed } from 'vue'
 const prop = defineProps(['id'])
-const productList = ref([])
+const products = [
+  { id: 1, name: '咖啡', price: 120 },
+  { id: 2, name: '吐司', price: 60 },
+  { id: 3, name: '紅茶', price: 45 },
+]
 const targetProd = computed(() => {
-  if (!productList.value) return {}
-  return productList.value.find((item) => {
+  return products.find((item) => {
     return item.id == prop.id
   })
-})
-const fetchData = () => {
-  axios
-    .get('https://fakestoreapi.com/products')
-    .then((res) => {
-      productList.value = res.data || []
-    })
-    .catch((error) => {})
-    .finally(() => {})
-}
-onMounted(() => {
-  fetchData()
 })
 </script>
 <template>
