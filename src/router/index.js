@@ -36,6 +36,12 @@ const router = createRouter({
       component: () => import('@/views/QAView.vue'),
     },
     {
+      path: '/shop/:id',
+      name: 'shopDetail',
+      component: () => import('@/views/ShopDetailView.vue'),
+      props: true,
+    },
+    {
       path: '/:pathMatch(.*)*',
       name: 'notFound',
       component: NotFound,
