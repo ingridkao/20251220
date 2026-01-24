@@ -7,6 +7,9 @@ import AdminHome from '@/views/admin/AdminHome.vue'
 import AdminUsers from '@/views/admin/AdminUsers.vue'
 import AdminUserDetail from '@/views/admin/AdminUserDetail.vue'
 import AdminSettings from '@/views/admin/AdminSettings.vue'
+
+import { useUserStore } from '@/stores/user'
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -56,6 +59,9 @@ const router = createRouter({
       path: '/user',
       name: 'user',
       component: () => import('@/views/UserView.vue'),
+      meta: {
+        requiresAuth: true,
+      },
     },
     {
       path: '/qa',
@@ -84,6 +90,14 @@ const router = createRouter({
     // 始終滾到最上面
     return { top: 0 }
   },
+})
+
+// 路由守衛：沒登入就導去 login
+router.beforeEach((to) => {
+  const userStore = useUserStore()
+  if (to.meta.requiresAuth && !userStore.isLogin) {
+    return { path: '/login', query: { redirect: to.fullPath } }
+  }
 })
 
 export default router

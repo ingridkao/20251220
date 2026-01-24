@@ -1,4 +1,6 @@
 <script setup>
+// import WeatherNow from '@/components/WeatherNow.vue'
+import UploadZone from '@/components/UploadZone.vue'
 // 1. 載入套件
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
@@ -64,6 +66,8 @@ const search = () => {
       {{ user.username }}
     </li>
   </ol>
+  <!-- <WeatherNow /> -->
+  <UploadZone />
 </template>
 
 <style lang="scss" scoped></style>

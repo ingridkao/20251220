@@ -31,12 +31,16 @@ export const useUserStore = defineStore('user', () => {
     })
     if (!result) {
       errorMsg.value = '登入失敗'
+      logout()
       return false
     }
     // 成功登入
     token.value = result.token
+    errorMsg.value = ''
     localStorage.setItem(localStorageKey, result.token) // 再寫入localStorage
+    return true
   }
+
   const logout = () => {
     token.value = ''
     localStorage.removeItem(localStorageKey)
